@@ -1,0 +1,81 @@
+export const activityLogs = [
+  {
+    id: 1,
+    time: '09:00:00',
+    text: "I'll begin a systematic penetration test on ",
+    highlight: [{ type: 'url', value: 'helpdesk.democorp.com' }],
+    after: '. Let me start with reconnaissance and enumeration.',
+  },
+  {
+    id: 2,
+    time: '09:01:00',
+    text: 'Good! target is online. Now let me perform port scanning to identify running services.',
+    highlight: [],
+    after: '',
+  },
+  {
+    id: 3,
+    time: '09:02:00',
+    text: 'Excellent reconnaissance results:',
+    highlight: [],
+    after: '',
+    block: '  — helpdesk.democorp.com: Apache httpd 2.4.65 on port 80 (web server)\nLet me probe the web server on target first to understand its structure.',
+  },
+  {
+    id: 4,
+    time: '09:03:00',
+    text: "Great! I found a login page for a Help Desk Platform. I can see a useful comment: ",
+    highlight: [{ type: 'warn', value: '"TODO: Delete the testing account (test:test)"' }],
+    after: '. Let me test this credential. The login redirects to ',
+    highlight2: [{ type: 'path', value: '/password/test' }],
+    after2: '. Let me follow that path and explore it.',
+  },
+  {
+    id: 5,
+    time: '09:04:00',
+    text: "The POST method is not allowed on /password/test. Let me check what the JavaScript does — it posts to ",
+    highlight: [{ type: 'path', value: "'#'" }],
+    after: " which means the current page. Let me try a different approach.",
+  },
+  {
+    id: 6,
+    time: '09:05:00',
+    text: "It redirects back to /password/test. Let me check if there's an /api endpoint or look for other paths. Let me also try exploring with the ",
+    highlight: [{ type: 'url', value: 'test:test' }],
+    after: " password directly on other endpoints.",
+  },
+  {
+    id: 7,
+    time: '09:06:00',
+    text: "Great! I can access the dashboard using the ",
+    highlight: [{ type: 'header', value: "'X-UserId: 10032'" }],
+    after: " header. The dashboard shows \"Welcome, John Doe\". This suggests an ",
+    highlight2: [{ type: 'critical', value: '**IDOR vulnerability**' }],
+    after2: " — I can access any user's dashboard by just changing the X-UserId header. Let me explore more of the application...",
+  },
+]
+
+export const verificationLogs = [
+  {
+    id: 1,
+    time: '10:00:00',
+    text: 'Starting verification loop for confirmed findings. Re-testing ',
+    highlight: [{ type: 'url', value: '/api/users/profile' }],
+    after: ' with crafted payloads.',
+  },
+  {
+    id: 2,
+    time: '10:01:00',
+    text: "Payload: ' OR 1=1-- confirmed blind SQLi. Response delay: 4.2s vs baseline 0.1s.",
+    highlight: [],
+    after: '',
+  },
+  {
+    id: 3,
+    time: '10:02:00',
+    text: 'Verifying IDOR on document endpoint. Sequential IDs from 1001 to 1500 tested.',
+    highlight: [],
+    after: '',
+    block: '  Result: 143 unauthorized documents accessible\n  Severity confirmed: HIGH',
+  },
+]

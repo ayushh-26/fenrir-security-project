@@ -1,0 +1,42 @@
+export const findings = [
+  {
+    id: 'f1',
+    severity: 'Critical',
+    title: 'SQL Injection in Authentication Endpoint',
+    endpoint: '/api/users/profile',
+    description: 'Time-based blind SQL injection confirmed on user-controlled input during authentication flow. Exploitation allows database-level access.',
+    time: '10:45:23',
+  },
+  {
+    id: 'f2',
+    severity: 'High',
+    title: 'Unauthorized Access to User Metadata',
+    endpoint: '/api/auth/login',
+    description: 'Authenticated low-privilege user was able to access metadata of other users. Access control checks were missing.',
+    time: '10:45:23',
+  },
+  {
+    id: 'f3',
+    severity: 'Medium',
+    title: 'Broken Authentication Rate Limiting',
+    endpoint: '/api/search',
+    description: 'No effective rate limiting detected on login attempts. Automated brute-force attempts possible.',
+    time: '10:45:23',
+  },
+  {
+    id: 'f4',
+    severity: 'High',
+    title: 'Insecure Direct Object Reference',
+    endpoint: '/api/documents/:id',
+    description: 'Document IDs are sequential integers. Enumeration allowed access to documents belonging to other tenants.',
+    time: '10:44:11',
+  },
+  {
+    id: 'f5',
+    severity: 'Critical',
+    title: 'Remote Code Execution via File Upload',
+    endpoint: '/api/upload/avatar',
+    description: 'File type validation only checks extension, not MIME type. PHP files can be uploaded and executed on the server.',
+    time: '10:43:58',
+  },
+]
