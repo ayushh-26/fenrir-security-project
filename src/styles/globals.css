@@ -46,7 +46,6 @@
   }
 }
 
-/* Dark mode variant */
 @variant dark (&:where(.dark, .dark *));
 
 * { box-sizing: border-box; }
@@ -56,6 +55,8 @@ body {
   background-color: var(--color-light-bg);
   color: var(--color-light-text);
   transition: background-color 0.2s, color 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
